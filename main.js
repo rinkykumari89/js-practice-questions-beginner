@@ -267,4 +267,98 @@ const replaceFirstDigit = (str) =>
         str.replace(/\d/, '$');           //Use of Regex
                                           //if use '/\d/g' will replace all digit with $
 
-console.log(replaceFirstDigit('Abgjh35hf1j'));
+//console.log(replaceFirstDigit('Abgjh35hf1j'));
+
+
+/* 
+Exercise 18:
+-------------
+Write a JavaScript program to find the given year is a leap year or not.
+
+*/
+
+const isLeapYear = (year) => year % 4 === 0;
+
+//console.log(isLeapYear(2016));        => true
+//console.log(isLeapYear(2015));        => false
+
+/* 
+Exercise 19:
+-------------
+Write a JavaScript program to compare two objects to determine if the first one
+contains the same properties as the second one (which may also have additional properties).
+
+*/
+
+const objA = { a: 1, b: 2, c: 3};
+const objB = { a: 1, b: 2, c: 3};
+const objC = { a: 1, b: 3, d: 4};
+
+const isObjectEqual = (a, b) =>
+        //console.log(Object.keys(a));          => Array(3) ["a", "b", "c"]
+        Object.keys(a).every(key => b[key]);    //Array.every();
+
+//console.log(isObjectEqual(objA, objB));         => true
+//console.log(isObjectEqual(objA, objC));         => false
+//console.log(isObjectEqual(objB, objC));           => false
+
+
+/* 
+Exercise 20:
+-------------
+Write a JavaScript program to convert a comma-separated values(CSV)
+string to a 2D array. A new line indicates a new row in the array.
+
+example:
+---------
+abc, def, ghi
+jkl, mno, pqr
+stu, vwx, yza
+
+*/
+
+const str = `abc, def, ghi
+jkl, mno, pqr
+stu, vwx, yza`;
+
+const parseCSV = (str) =>str
+        .split("\n")            //Array(3) [ "abc, def, ghi", "jkl, mno, pqr", "stu, vwx, yza" ]
+        .map(row => row.split(','));
+
+
+//console.log(parseCSV(str));             =>  [ "abc", " def", " ghi" ]
+                                           // [ "jkl", " mno", " pqr" ]
+                                           // [ "stu", " vwx", " yza" ]
+
+
+
+/* 
+Exercise 21:
+-------------
+Write a JavaScript program to generate a random hexadecimal color code.
+
+*/
+
+const getRandomHexNumber = () =>
+        Math.floor(Math.random() * 16).toString(16);       //toString(16) => Base 16 for Hexadecimal
+
+
+const getRandomHexColor = () =>
+        '#' + Array.from({length: 6})                      // #,,,,,
+        .map(getRandomHexNumber)                          //#a,5,b,4,d,6
+        .join('');                                       //#a5b4d6
+
+//console.log(getRandomHexNumber());
+//console.log(getRandomHexColor());
+
+
+/* 
+Exercise 22:
+-------------
+Write a JavaScript function that returns true if the provided predicate function returns 
+ture for all elements in a collection, false otherwise.
+
+*/
+
+console.log([1, 2, 3, 4, 5].every(x => x > 0));         //true
+console.log([1, 2, 3, 4, 5].every(x => x > 3));         //false
